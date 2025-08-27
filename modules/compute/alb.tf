@@ -1,6 +1,6 @@
 # Application Load Balancer
 resource "aws_lb" "wp_site_lb" {
-  name               = "wp-site-lb"
+  name               = "${var.environment}-wordpress-alb"
   internal           = false
   load_balancer_type = "application"
   security_groups    = [var.alb_security_group_id]
@@ -9,9 +9,10 @@ resource "aws_lb" "wp_site_lb" {
   enable_deletion_protection = false
 
   tags = {
-    Name        = "wp-site-lb"
+    Name        = "${var.environment}-wordpress-alb"
     Environment = var.environment
     Tier        = "Presentation"
+    Project     = "wordpress"
   }
 }
 
@@ -27,7 +28,8 @@ resource "aws_lb_listener" "web" {
   }
 
   tags = {
-    Name        = "wp-site-lb-listener"
+    Name        = "${var.environment}-wordpress-alb-listener"
     Environment = var.environment
+    Project     = "wordpress"
   }
 }

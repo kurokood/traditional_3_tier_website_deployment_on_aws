@@ -1,5 +1,5 @@
 resource "aws_efs_file_system" "main" {
-  creation_token = "MyEFS"
+  creation_token = "${var.environment}-wordpress-efs"
 
   performance_mode = "generalPurpose"
   throughput_mode  = "bursting"
@@ -7,8 +7,9 @@ resource "aws_efs_file_system" "main" {
   encrypted = true
 
   tags = {
-    Name        = "MyEFS"
+    Name        = "${var.environment}-wordpress-efs"
     Environment = var.environment
+    Project     = "wordpress"
   }
 }
 

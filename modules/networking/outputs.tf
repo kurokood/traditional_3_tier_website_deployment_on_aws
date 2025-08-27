@@ -4,10 +4,7 @@ output "vpc_id" {
   value       = aws_vpc.main.id
 }
 
-output "vpc_cidr_block" {
-  description = "CIDR block of the VPC"
-  value       = aws_vpc.main.cidr_block
-}
+# Removed unused output: vpc_cidr_block
 
 # Subnet Outputs
 output "public_subnet_ids" {

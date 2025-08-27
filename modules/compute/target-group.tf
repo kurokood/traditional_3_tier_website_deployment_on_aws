@@ -1,6 +1,6 @@
 # Target Group for Application Servers
 resource "aws_lb_target_group" "app_servers" {
-  name     = "MyAppServers"
+  name     = "${var.environment}-wordpress-app-servers"
   port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
@@ -19,9 +19,10 @@ resource "aws_lb_target_group" "app_servers" {
   }
 
   tags = {
-    Name        = "MyAppServers"
+    Name        = "${var.environment}-wordpress-app-servers"
     Environment = var.environment
     Tier        = "Application"
+    Project     = "wordpress"
   }
 }
 

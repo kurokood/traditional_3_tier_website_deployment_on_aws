@@ -84,9 +84,10 @@ resource "aws_instance" "application_server_1" {
   user_data = base64encode(local.user_data)
 
   tags = {
-    Name        = "ApplicationServer1"
+    Name        = "${var.environment}-wordpress-app-server-1"
     Environment = var.environment
     Tier        = "Application"
+    Project     = "wordpress"
   }
 
   # Ensure the instance waits for EFS to be available
@@ -107,9 +108,10 @@ resource "aws_instance" "application_server_2" {
   user_data = base64encode(local.user_data)
 
   tags = {
-    Name        = "ApplicationServer2"
+    Name        = "${var.environment}-wordpress-app-server-2"
     Environment = var.environment
     Tier        = "Application"
+    Project     = "wordpress"
   }
 
   # Ensure the instance waits for EFS to be available

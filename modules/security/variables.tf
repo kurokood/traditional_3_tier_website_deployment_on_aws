@@ -12,3 +12,9 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "project" {
+  description = "Project name for resource tagging"
+  type        = string
+  default     = "wordpress"
+}

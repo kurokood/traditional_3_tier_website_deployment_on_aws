@@ -1,23 +1,4 @@
-# EC2 Instance Outputs
-output "application_server_1_id" {
-  description = "ID of Application Server 1"
-  value       = aws_instance.application_server_1.id
-}
-
-output "application_server_2_id" {
-  description = "ID of Application Server 2"
-  value       = aws_instance.application_server_2.id
-}
-
-output "application_server_1_private_ip" {
-  description = "Private IP of Application Server 1"
-  value       = aws_instance.application_server_1.private_ip
-}
-
-output "application_server_2_private_ip" {
-  description = "Private IP of Application Server 2"
-  value       = aws_instance.application_server_2.private_ip
-}
+# Removed unused individual EC2 instance outputs for cleaner interface
 
 # Load Balancer Outputs
 output "alb_dns_name" {

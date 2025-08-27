@@ -1,6 +1,6 @@
 # ALB Security Group
 resource "aws_security_group" "alb" {
-  name        = "ALB-SG"
+  name        = "${var.environment}-${var.project}-alb-sg"
   description = "Security group for Application Load Balancer"
   vpc_id      = var.vpc_id
 
@@ -32,14 +32,15 @@ resource "aws_security_group" "alb" {
   }
 
   tags = {
-    Name        = "ALB-SG"
+    Name        = "${var.environment}-${var.project}-alb-sg"
     Environment = var.environment
+    Project     = var.project
   }
 }
 
 # SSH Security Group
 resource "aws_security_group" "ssh" {
-  name        = "SSH-SG"
+  name        = "${var.environment}-${var.project}-ssh-sg"
   description = "Security group for SSH access"
   vpc_id      = var.vpc_id
 
@@ -62,13 +63,14 @@ resource "aws_security_group" "ssh" {
   }
 
   tags = {
-    Name        = "SSH-SG"
+    Name        = "${var.environment}-${var.project}-ssh-sg"
     Environment = var.environment
+    Project     = var.project
   }
 }
 # WebServer Security Group
 resource "aws_security_group" "webserver" {
-  name        = "WebServer-SG"
+  name        = "${var.environment}-${var.project}-webserver-sg"
   description = "Security group for Web Servers"
   vpc_id      = var.vpc_id
 
@@ -109,14 +111,15 @@ resource "aws_security_group" "webserver" {
   }
 
   tags = {
-    Name        = "WebServer-SG"
+    Name        = "${var.environment}-${var.project}-webserver-sg"
     Environment = var.environment
+    Project     = var.project
   }
 }
 
 # Database Security Group
 resource "aws_security_group" "database" {
-  name        = "Database-SG"
+  name        = "${var.environment}-${var.project}-database-sg"
   description = "Security group for RDS Database"
   vpc_id      = var.vpc_id
 
@@ -139,14 +142,15 @@ resource "aws_security_group" "database" {
   }
 
   tags = {
-    Name        = "Database-SG"
+    Name        = "${var.environment}-${var.project}-database-sg"
     Environment = var.environment
+    Project     = var.project
   }
 }
 
 # EFS Security Group
 resource "aws_security_group" "efs" {
-  name        = "EFS-SG"
+  name        = "${var.environment}-${var.project}-efs-sg"
   description = "Security group for Elastic File System"
   vpc_id      = var.vpc_id
 
@@ -187,7 +191,8 @@ resource "aws_security_group" "efs" {
   }
 
   tags = {
-    Name        = "EFS-SG"
+    Name        = "${var.environment}-${var.project}-efs-sg"
     Environment = var.environment
+    Project     = var.project
   }
 }

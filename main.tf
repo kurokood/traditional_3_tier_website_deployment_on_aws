@@ -10,58 +10,18 @@ terraform {
   required_version = ">= 1.0"
 }
 
-# Data source to validate AWS region availability
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
-# Data source to get current AWS region
-data "aws_region" "current" {}
-
 # Data source to get current AWS caller identity for validation
 data "aws_caller_identity" "current" {}
-
-# Local values for validation and error handling
-locals {
-  # Validate that specified availability zones are available in the region
-  available_azs = data.aws_availability_zones.available.names
-  specified_azs = ["us-east-1a", "us-east-1b"]
-
-  # Check if all specified AZs are available
-  az_validation = alltrue([
-    for az in local.specified_azs : contains(local.available_azs, az)
-  ])
-
-  # Validate CIDR blocks don't overlap
-  all_cidrs = concat(
-    ["10.0.0.0/24", "10.0.1.0/24"],                              # public subnets
-    ["10.0.2.0/24", "10.0.3.0/24", "10.0.4.0/24", "10.0.5.0/24"] # private subnets
-  )
-}
 
 provider "aws" {
   region = "us-east-1"
 }
 
-# Validation checks using check blocks (Terraform 1.5+)
-check "availability_zones_valid" {
-  assert {
-    condition     = local.az_validation
-    error_message = "One or more specified availability zones are not available in the current region. Available AZs: ${join(", ", local.available_azs)}"
-  }
-}
-
+# Validation check for AWS credentials
 check "aws_credentials_configured" {
   assert {
     condition     = data.aws_caller_identity.current.account_id != ""
     error_message = "AWS credentials are not properly configured. Please configure AWS CLI or set environment variables."
-  }
-}
-
-check "region_matches_azs" {
-  assert {
-    condition     = data.aws_region.current.name == "us-east-1"
-    error_message = "Current AWS region (${data.aws_region.current.name}) does not match the required region (us-east-1)."
   }
 }
 

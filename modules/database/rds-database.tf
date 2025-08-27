@@ -1,17 +1,18 @@
 # RDS DB Subnet Group
 resource "aws_db_subnet_group" "main" {
-  name       = "mydbsubnetgroup"
+  name       = "${var.environment}-wordpress-db-subnet-group"
   subnet_ids = var.private_db_subnet_ids
 
   tags = {
-    Name        = "MyDBSubnetGroup"
+    Name        = "${var.environment}-wordpress-db-subnet-group"
     Environment = var.environment
+    Project     = "wordpress"
   }
 }
 
 # RDS MySQL Instance
 resource "aws_db_instance" "mysql" {
-  identifier = "mysqldb"
+  identifier = "${var.environment}-wordpress-mysql"
 
   # Engine configuration
   engine         = "mysql"
@@ -51,7 +52,8 @@ resource "aws_db_instance" "mysql" {
   apply_immediately = true
 
   tags = {
-    Name        = "mysqldb"
+    Name        = "${var.environment}-wordpress-mysql"
     Environment = var.environment
+    Project     = "wordpress"
   }
 }
