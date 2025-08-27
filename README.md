@@ -242,9 +242,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 🏷️ Tags
 
 `terraform` `aws` `wordpress` `infrastructure` `iac` `devops` `cloud` `mysql` `efs` `alb` `vpc`
-
 ---
-
 ###  Author: Mon Villarin
  📌 LinkedIn: [Ramon Villarin](https://www.linkedin.com/in/ramon-villarin/)  
  📌 Portfolio Site: [MonVillarin.com](https://monvillarin.com)  
