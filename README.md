@@ -245,4 +245,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**⭐ If this project helped you, please give it a star!**
+###  Author: Mon Villarin
+ 📌 LinkedIn: [Ramon Villarin](https://www.linkedin.com/in/ramon-villarin/)  
+ 📌 Portfolio Site: [MonVillarin.com](https://monvillarin.com)  
+ 📌 Blog Post: [Traditional 3-Tier Website Deployment on AWS: A Real-World Case Study](https://blog.monvillarin.com/traditional-3-tier-website-deployment-on-aws-a-real-world-case-study)
