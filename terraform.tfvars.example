@@ -1,0 +1,72 @@
+# AWS WordPress Infrastructure Configuration Example
+# Copy this file to terraform.tfvars and update the values as needed
+
+# AWS Region Configuration
+region = "us-east-1"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+vpc_name = "MyVPC"
+
+# Subnet Configuration
+# Public subnets for ALB and NAT Gateways
+public_subnet_cidrs = [
+  "10.0.0.0/24",  # us-east-1a
+  "10.0.1.0/24"   # us-east-1b
+]
+
+# Private subnets for applications and database
+private_subnet_cidrs = [
+  "10.0.2.0/24",  # Application subnet - us-east-1a
+  "10.0.3.0/24",  # Application subnet - us-east-1b
+  "10.0.4.0/24",  # Database subnet - us-east-1a
+  "10.0.5.0/24"   # Database subnet - us-east-1b
+]
+
+# Availability Zones
+availability_zones = [
+  "us-east-1a",
+  "us-east-1b"
+]
+
+# Internet Gateway Configuration
+igw_name = "MyIGW"
+
+# Database Configuration
+db_name     = "wpdb"
+db_username = "admin"
+# IMPORTANT: Set a secure password for production use
+# Password must be at least 8 characters and contain only alphanumeric and special characters !@#$%^&*()_+=-
+db_password = "MySecurePassword123!"
+
+# Optional: Uncomment and modify these values if needed
+# db_instance_class = "db.t3.micro"
+# allocated_storage = 20
+# engine_version = "8.0"
+
+# EC2 Configuration
+instance_type = "t2.micro"
+# Optional: Uncomment if you have an existing key pair for SSH access
+# key_name = "my-key-pair"
+
+# Resource Tagging
+environment = "dev"
+project     = "wordpress"
+
+# Example values for different environments:
+# 
+# Development Environment:
+# environment = "dev"
+# instance_type = "t2.micro"
+# allocated_storage = 20
+#
+# Staging Environment:
+# environment = "staging"
+# instance_type = "t3.small"
+# allocated_storage = 50
+#
+# Production Environment:
+# environment = "prod"
+# instance_type = "t3.medium"
+# allocated_storage = 100
+# db_instance_class = "db.t3.small"
